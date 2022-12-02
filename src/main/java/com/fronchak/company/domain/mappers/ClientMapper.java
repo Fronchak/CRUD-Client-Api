@@ -24,4 +24,12 @@ public class ClientMapper {
 		return entities.map(entity -> convertEntityToDTO(entity));
 	}
 	
+	public void copyDTOToEntity(ClientDTO dto, Client entity) {
+		entity.setName(dto.getName());
+		entity.setCpf(dto.getCpf());
+		entity.setIncome(dto.getIncome());
+		entity.setBirthDate(dto.getBirthDate());
+		entity.setChildren(dto.getChildren());
+	}
+	
 }

@@ -21,9 +21,12 @@ public class ClientService {
 	@Autowired
 	private ClientMapper mapper;
 	
-	public Client save(Client client) {
-		client = repository.save(client);
-		return client;
+	@Transactional
+	public ClientDTO save(ClientDTO dto) {
+		Client entity = new Client();
+		mapper.copyDTOToEntity(dto, entity);
+		entity = repository.save(entity);
+		return mapper.convertEntityToDTO(entity);
 	}
 	
 	@Transactional(readOnly = true)
